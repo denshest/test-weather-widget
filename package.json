@@ -1,6 +1,6 @@
 {
-  "name": "tsvue-todo-app",
-  "version": "0.1.0",
+  "name": "weather-widget",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",

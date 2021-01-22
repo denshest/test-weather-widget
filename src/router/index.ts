@@ -1,12 +1,18 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 
-import Weather from '@/views/asd.vue'
+import Home from '@/views/Home.vue'
+import Settings from "@/views/Settings.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    name: 'Weather',
-    component: Weather
+    name: 'home',
+    component: Home
+  },
+  {
+    path: '/settings',
+    name: 'settings',
+    component: Settings
   }
 ];
 

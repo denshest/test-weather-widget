@@ -14,7 +14,7 @@ export default interface Data {
     dt: number;
     base: string;
     coord: Coordinates;
-    system: System;
+    sys: System;
     weather: Array<Weather>;
     wind?: Wind;
     clouds?: Clouds;

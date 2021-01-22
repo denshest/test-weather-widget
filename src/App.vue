@@ -4,10 +4,10 @@
 </template>
 
 <script lang="ts">
-  import {defineComponent} from "vue";
+import {defineComponent} from "vue";
+  import {MutationType} from "@/store/mutations/types";
   import store from "@/store"
   import Header from "@/components/Header.vue";
-  import {MutationType} from "@/store/mutations/types";
 
   export default defineComponent({
     name: "App",

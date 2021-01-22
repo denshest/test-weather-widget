@@ -14,7 +14,8 @@ type ActionArguments = Omit<ActionContext<State, State>, 'commit'> & {
         payload?: Parameters<Mutations[K]>[1]
     ): ReturnType<Mutations[K]>;
 }
+
 export type Actions = {
-    [ActionType.ADD_CITY](context: ActionArguments, payload: City): void;
+    [ActionType.ADD_CITY](context: ActionArguments, payload: {city: City; isCurrentCity?: boolean}): void;
     [ActionType.DELETE_CITY](context: ActionArguments, payload: number): void;
 }

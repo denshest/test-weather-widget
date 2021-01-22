@@ -41,9 +41,11 @@ export default defineComponent({
         .then(response => response.json())
         .then((result: Data) => {
           store.dispatch(ActionType.ADD_CITY, {
-            id: result.id,
-            name: result.name,
-            country: result.sys.country
+            city: {
+              id: result.id,
+              name: result.name,
+              country: result.sys.country
+            }
           })
           clear()
         })

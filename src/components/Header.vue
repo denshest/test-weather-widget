@@ -1,5 +1,8 @@
 <template>
-  <header>
+  <header class="header">
+    <p class="header__title">
+      Settings
+    </p>
     <router-link :to="{name: 'home'}" v-if="currentRoute !== 'home'">
       Home
     </router-link>
@@ -17,7 +20,6 @@ export default defineComponent({
   name: "Header",
   setup() {
     const route = useRoute()
-
     const currentRoute = computed(() => route.name);
 
     return {
@@ -27,6 +29,15 @@ export default defineComponent({
 })
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
+    &__title {
+      font-weight: 600;
+      color: #9b9b9b;
+    }
+  }
 </style>

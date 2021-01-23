@@ -1,14 +1,5 @@
 <template>
   <div>
-    <div v-for="item in cities" :key="item.id" style="display: flex; margin-bottom: 32px;">
-      <p>
-        {{ item.name }}, {{ item.country }}
-      </p>
-      <button type="button" @click="deleteCity(item.id)">
-        delete
-      </button>
-    </div>
-
     <form @submit.prevent="fetchWeather">
       <label for="input_city">
         Add Location:
@@ -18,6 +9,19 @@
         OK
       </button>
     </form>
+    <p>
+      List of cities:
+    </p>
+    <div v-for="item in cities" :key="item.id" class="card">
+      <p class="card__title">
+        {{ item.name }}, {{ item.country }}
+      </p>
+      <button type="button" @click="deleteCity(item.id)" class="card__remove">
+        <svg>
+          <use xlink:href="#icon-trash"></use>
+        </svg>
+      </button>
+    </div>
   </div>
 </template>
 
@@ -62,6 +66,51 @@ export default defineComponent({
 })
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+  .card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    padding: 12px;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 2px 2px rgba(0,0,0,.4);
 
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+
+    &__title {
+      margin: 0;
+    }
+
+    &__remove {
+      width: 20px;
+      height: 20px;
+      padding: 0;
+      background: none;
+      border: none;
+      box-shadow: none;
+
+      &:hover {
+        cursor: pointer;
+
+        svg {
+          fill: #ff3448
+        }
+      }
+
+      &:focus,
+      &:active {
+        outline: none;
+      }
+
+      svg {
+        width: 100%;
+        height: 100%;
+        transition: .3s ease all;
+      }
+    }
+  }
 </style>

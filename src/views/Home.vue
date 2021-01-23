@@ -1,20 +1,7 @@
 <template>
     <div>
       <div v-if="cities">
-        <div v-for="item in weatherList.list" :key="item.id" style="margin-bottom: 32px;">
-          <p>
-            {{ item.name }}, {{ item.sys.country }}
-          </p>
-          <div style="display: flex; align-items: center">
-            <img :src="`http://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`">
-            <p>
-              {{ Math.trunc(item.main.temp) }}
-            </p>
-          </div>
-          <p>
-            Feels like {{ Math.trunc(item.main.feels_like) }}
-          </p>
-        </div>
+        <Weather v-for="item in weatherList.list" :key="item.id" :item="item" />
       </div>
       <div v-else>
         Add city in Settings
@@ -29,9 +16,13 @@
   import GroupData from "@/models/GroupData";
   import Data from "@/models/Data";
   import {ActionType} from "@/store/actions/types";
+  import Weather from "@/components/Weather.vue";
 
   export default defineComponent({
     name: "Home",
+    components: {
+      Weather
+    },
     setup() {
       const isCurrentCityFound = computed(() => store.state.isCurrentCityFound)
       const cities = computed(() => store.state.cities)

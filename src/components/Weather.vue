@@ -251,7 +251,7 @@ import Weather from "@/models/Weather";
       span {
         font-size: 14px;
         font-weight: 500;
-        color: #bcbbc1;
+        color: map_get($palette, content-light);
         transition: .3s ease color;
 
         &.active {
@@ -278,7 +278,7 @@ import Weather from "@/models/Weather";
     &__current-description {
       margin: 8px 0 0;
       font-size: 14px;
-      color: #bcbbc1;
+      color: map_get($palette, content-light);
       text-transform: capitalize;
     }
 
@@ -324,7 +324,7 @@ import Weather from "@/models/Weather";
     &__more {
       margin: 0;
       font-size: 12px;
-      color: #bcbbc1;
+      color: map_get($palette, content-light);
       text-align: right;
     }
   }
@@ -338,7 +338,7 @@ import Weather from "@/models/Weather";
     &__icon {
       width: 28px;
       height: 28px;
-      fill: #f1a9c6;
+      fill: map_get($palette, accent-main);
     }
 
     &__description {

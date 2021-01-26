@@ -233,17 +233,20 @@ import Weather from "@/models/Weather";
     }
 
     &__main-info {
+      width: 100%;
       font-weight: 300;
     }
 
     &__main-wrapper {
       display: flex;
-      justify-content: space-between
+      align-items: flex-start;
+      justify-content: space-between;
     }
 
     &__temperature-type {
       display: flex;
       align-items: center;
+      margin-right: 16px;
 
       span {
         font-size: 14px;

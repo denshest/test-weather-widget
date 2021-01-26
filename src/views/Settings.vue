@@ -7,31 +7,54 @@
       </button>
     </form>
     <p>
-      List of cities:
+      Cities:
     </p>
-    <div v-for="item in cities" :key="item.id" class="card">
-      <p class="card__title">
-        {{ item.name }}, {{ item.country }}
-      </p>
-      <button type="button" @click="deleteCity(item.id)" class="card__remove">
-        <svg>
-          <use xlink:href="#icon-trash"></use>
-        </svg>
-      </button>
-    </div>
+    <draggable v-model="cities" item-key="id" handle=".card__drag">
+      <template #item="{element}">
+        <div class="card">
+          <button class="card__drag">
+            <svg class="card__icon card__icon_type_drag">
+              <use xlink:href="#icon-menu"></use>
+            </svg>
+          </button>
+          <p class="card__title">
+            {{ element.name }}, {{ element.country }}
+          </p>
+          <button type="button" @click="deleteCity(element.id)" class="card__remove">
+            <svg class="card__icon card__icon_type_remove">
+              <use xlink:href="#icon-trash"></use>
+            </svg>
+          </button>
+        </div>
+      </template>
+    </draggable>
   </div>
 </template>
 
 <script lang="ts">
-  import {computed, defineComponent, ref} from "vue"
+  import {computed, defineComponent, ref, WritableComputedRef} from "vue"
   import store from "@/store"
   import {ActionType} from "@/store/actions/types"
+  import draggable from 'vuedraggable'
+  import City from "@/models/City";
 
   export default defineComponent({
     name: "Settings",
+    components: {
+      draggable
+    },
     setup() {
-      const city = ref('')
-      const cities = computed(() => store.state.cities)
+      const city = ref()
+
+      const cities: WritableComputedRef<City[]> = computed({
+        get(): City[] {
+          return store.state.cities
+        },
+        set(newValue: City[]): void {
+          store.dispatch(ActionType.UPDATE_CITIES, newValue)
+        },
+      });
+
       const clear = () => city.value = ''
       const deleteCity = (id: number) => store.dispatch(ActionType.DELETE_CITY, id)
 
@@ -80,13 +103,25 @@
       margin-bottom: 0;
     }
 
+    &__drag {
+      width: 20px;
+      height: 20px;
+      display: flex;
+      padding: 0;
+      border: none;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
     &__title {
-      margin: 0;
+      margin: 0 auto 0 16px;
     }
 
     &__remove {
-      width: 20px;
-      height: 20px;
+      width: 28px;
+      height: 28px;
       padding: 0;
       background: none;
       border: none;
@@ -95,7 +130,7 @@
       &:hover {
         cursor: pointer;
 
-        svg {
+        .card__icon {
           fill: #ff3448
         }
       }
@@ -104,12 +139,12 @@
       &:active {
         outline: none;
       }
+    }
 
-      svg {
-        width: 100%;
-        height: 100%;
-        transition: .3s ease all;
-      }
+    &__icon {
+      width: 100%;
+      height: 100%;
+      transition: .3s ease all;
     }
   }
 </style>

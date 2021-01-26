@@ -5,7 +5,8 @@ import City from "@/models/City";
 
 export enum ActionType {
     ADD_CITY = 'ADD_CITY',
-    DELETE_CITY = 'DELETE_CITY'
+    DELETE_CITY = 'DELETE_CITY',
+    UPDATE_CITIES = 'UPDATE_CITIES',
 }
 
 type ActionArguments = Omit<ActionContext<State, State>, 'commit'> & {
@@ -18,4 +19,5 @@ type ActionArguments = Omit<ActionContext<State, State>, 'commit'> & {
 export type Actions = {
     [ActionType.ADD_CITY](context: ActionArguments, payload: {city: City; isCurrentCity?: boolean}): void;
     [ActionType.DELETE_CITY](context: ActionArguments, payload: number): void;
+    [ActionType.UPDATE_CITIES](context: ActionArguments, payload: City[]): void;
 }

@@ -19,6 +19,9 @@ export const mutations: MutationTree<State> & Mutations = {
     [MutationType.DELETE_CITY](state, payload: number) {
         state.cities = state.cities.filter((city: City) => city.id != payload)
     },
+    [MutationType.UPDATE_CITIES](state, payload: City[]) {
+        state.cities = payload
+    },
     [MutationType.FOUND_CURRENT_CITY](state) {
         state.isCurrentCityFound = true
     },

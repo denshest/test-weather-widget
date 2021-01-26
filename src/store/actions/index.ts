@@ -17,5 +17,9 @@ export const actions:  ActionTree<State, State> & Actions = {
     [ActionType.DELETE_CITY]({ commit }, payload: number) {
         commit(MutationType.DELETE_CITY, payload)
         commit(MutationType.UPDATE_STORAGE)
+    },
+    [ActionType.UPDATE_CITIES]({ commit }, payload: City[]) {
+        commit(MutationType.UPDATE_CITIES, payload)
+        commit(MutationType.UPDATE_STORAGE)
     }
 }

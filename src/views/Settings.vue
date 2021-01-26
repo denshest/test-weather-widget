@@ -1,8 +1,13 @@
 <template>
   <div>
-    <form @submit.prevent="fetchWeather">
-      <input type="text" v-model.lazy="city">
-      <button type="submit">
+    <form class="form" @submit.prevent="fetchWeather">
+      <input class="form__input" type="text"
+             :class="{'form__input_error': error.message}"
+             v-model.lazy="city" @input="error.message = ''">
+      <p class="form__error" v-if="error.message">
+        {{ error.message }}
+      </p>
+      <button class="form__button" type="submit">
         Add Location
       </button>
     </form>
@@ -37,6 +42,7 @@
   import {ActionType} from "@/store/actions/types"
   import draggable from 'vuedraggable'
   import City from "@/models/City";
+  import IError from "@/models/IError";
 
   export default defineComponent({
     name: "Settings",
@@ -45,6 +51,7 @@
     },
     setup() {
       const city = ref()
+      const error = ref({} as IError)
 
       const cities: WritableComputedRef<City[]> = computed({
         get(): City[] {
@@ -72,15 +79,20 @@
                 country: result.sys.country
               }
             })
+          } else {
+            error.value.message = response.statusText
           }
 
           clear()
+        } else {
+          error.value.message = 'Field is required'
         }
       }
 
       return {
         city,
         cities,
+        error,
         fetchWeather,
         deleteCity
       };
@@ -89,13 +101,57 @@
 </script>
 
 <style lang="scss">
+  .form {
+    display: flex;
+    flex-direction: column;
+
+    &__input {
+      padding: 8px 12px;
+      background-color: map_get($palette, white);
+      border: 1px solid map_get($palette, border);
+      font-size: 14px;
+      border-radius: 4px;
+
+      &_error {
+        border-color: map_get($palette, error);
+      }
+
+      &:hover,
+      &:focus {
+        background-color: map_get($palette, white);
+      }
+    }
+
+    &__error {
+      margin: 8px 0 0;
+      font-size: 12px;
+      font-weight: 300;
+      color: map_get($palette, error);
+    }
+
+    &__button {
+      margin-top: 8px;
+      padding: 12px 16px;
+      border-radius: 4px;
+      background-color: map_get($palette, accent-main);
+      border: none;
+      transition: .3s ease all;
+
+      &:hover,
+      &:focus {
+        background-color: darken(map_get($palette, accent-main), 20);
+        cursor: pointer;
+      }
+    }
+  }
+
   .card {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 8px;
     padding: 12px;
-    background-color: #fff;
+    background-color: map_get($palette, white);
     border-radius: 4px;
     box-shadow: 0 0 2px rgba(0, 0, 0, .05);
 
@@ -131,7 +187,7 @@
         cursor: pointer;
 
         .card__icon {
-          fill: #ff3448
+          fill: map_get($palette, error)
         }
       }
 

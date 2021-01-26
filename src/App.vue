@@ -38,9 +38,10 @@
             }
           })
         }
+
       }
 
-      const errorHandler = (error: PositionError) => {
+      const errorHandler = (error: PositionError): void => {
         console.error(error.message);
       }
 

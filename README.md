@@ -20,3 +20,8 @@ npm run build
 ```
 npm run lint
 ```
+
+### CS fixes files
+```
+npm run cs:fix
+```

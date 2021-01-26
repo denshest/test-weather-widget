@@ -1,8 +1,6 @@
 <template>
   <header class="header">
-    <p class="header__title" v-if="currentRoute === 'settings'">
-      Settings
-    </p>
+    <p class="header__title" v-text="currentRoute === 'settings' ? 'Settings': 'Current weather'"></p>
     <router-link :to="{name: 'home'}" v-if="currentRoute === 'settings'" class="header__link">
       <svg class="header__icon">
         <use xlink:href="#icon-close"></use>
@@ -33,7 +31,7 @@
   })
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   .header {
     height: 50px;
     display: flex;
@@ -41,8 +39,10 @@
     justify-content: space-between;
 
     &__title {
+      justify-self: center;
+      margin: 0 0 0 auto;
+      font-size: 18px;
       font-weight: 600;
-      color: #9b9b9b;
     }
 
     &__link {

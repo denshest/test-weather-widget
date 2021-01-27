@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "cross-env vue-cli-service build",
+    "build": "vue-cli-service build",
     "build-widget": "cross-env TYPE=widget vue-cli-service build ./src/widget.ts",
     "stylelint:lint": "stylelint './**/*.scss' -q --config ./stylelint.config.js",
     "stylelint:fix": "stylelint --fix './**/*.scss' -q --config ./stylelint-fix.config.js",

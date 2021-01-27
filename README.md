@@ -13,6 +13,11 @@ The problems I had to face:
 - [How to usage widget](#how-to-usage-weather-widget)
 
 ## Project setup
+1. Create `.env` with content:
+```
+VUE_APP_OPENWEATHER_APP_ID=YOUR_APP_ID
+```
+2. Install all dependencies
 ```
 npm install
 ```
@@ -54,8 +59,8 @@ npm run cs:fix
     <link href="dist/css/app.[hash].css" rel="stylesheet">
 </head>
 <body>
-<weather-widget/>
-<script src="../test-weather-widget/dist/js/app.[hash].js"></script>
+   <weather-widget/>
+   <script src="dist/js/app.[hash].js"></script>
 </body>
 </html>
 ```

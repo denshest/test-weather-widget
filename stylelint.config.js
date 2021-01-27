@@ -19,7 +19,9 @@ module.exports = {
         'block-no-empty': true,
         'selector-pseudo-class-no-unknown': true,
         'selector-pseudo-element-no-unknown': true,
-        'selector-type-no-unknown': true,
+        'selector-type-no-unknown': [true, {
+            ignoreTypes: ["weather-widget"]
+        }],
         'media-feature-name-no-unknown': true,
         'at-rule-no-unknown': null,
         'scss/at-rule-no-unknown': true,

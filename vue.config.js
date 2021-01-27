@@ -1,4 +1,17 @@
-module.exports = {
+const isWidget = process.env.TYPE === 'widget';
+let config = {};
+
+if (isWidget) {
+    config = {
+        configureWebpack: {
+            optimization: {
+                splitChunks: false
+            }
+        },
+    }
+}
+
+loaderConfig = {
     css: {
         loaderOptions: {
             sass: {
@@ -7,3 +20,5 @@ module.exports = {
         }
     }
 }
+
+module.exports = Object.assign(loaderConfig, config)

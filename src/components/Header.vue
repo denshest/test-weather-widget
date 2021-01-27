@@ -33,16 +33,16 @@
 
 <style lang="scss">
   .header {
-    height: 50px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    height: 50px;
 
     &__title {
       justify-self: center;
       margin: 0 0 0 auto;
-      font-size: 18px;
       font-weight: 600;
+      font-size: 18px;
     }
 
     &__link {

@@ -11,7 +11,7 @@ if (isWidget) {
     }
 }
 
-loaderConfig = {
+const loaderConfig = {
     css: {
         loaderOptions: {
             sass: {

@@ -9,9 +9,6 @@ export const mutations: MutationTree<State> & Mutations = {
         if (localCities) {
             state.cities = JSON.parse(localCities);
         }
-        if (localStorage.getItem('isCurrentCityFound')) {
-            state.isCurrentCityFound = true;
-        }
     },
     [MutationType.ADD_CITY](state, payload: City) {
         state.cities.push(payload)
@@ -22,11 +19,7 @@ export const mutations: MutationTree<State> & Mutations = {
     [MutationType.UPDATE_CITIES](state, payload: City[]) {
         state.cities = payload
     },
-    [MutationType.FOUND_CURRENT_CITY](state) {
-        state.isCurrentCityFound = true
-    },
     [MutationType.UPDATE_STORAGE](state) {
         localStorage.setItem('cities', JSON.stringify(state.cities))
-        localStorage.setItem('isCurrentCityFound', JSON.stringify(state.isCurrentCityFound))
     }
 }

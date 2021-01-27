@@ -42,7 +42,7 @@
   import {ActionType} from "@/store/actions/types"
   import draggable from 'vuedraggable'
   import City from "@/models/City";
-  import Error from "@/models/Error";
+  import FieldError from "@/models/FieldError";
 
   export default defineComponent({
     name: "Settings",
@@ -51,7 +51,7 @@
     },
     setup() {
       const city = ref()
-      const error = ref({} as Error)
+      const error = ref({} as FieldError)
 
       const cities: WritableComputedRef<City[]> = computed({
         get(): City[] {
@@ -65,23 +65,12 @@
       const clear = () => city.value = ''
       const deleteCity = (id: number) => store.dispatch(ActionType.DELETE_CITY, id)
 
-      const fetchWeather = async () => {
+      const fetchWeather = () => {
         if (city.value) {
-          const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city.value}&units=metric&APPID=${process.env.VUE_APP_OPENWEATHER_APP_ID}`)
-
-          if (response.ok) {
-            const result = await response.json();
-
-            await store.dispatch(ActionType.ADD_CITY, {
-              city: {
-                id: result.id,
-                name: result.name,
-                country: result.sys.country
-              }
-            })
-          } else {
-            error.value.message = response.statusText
-          }
+          store.dispatch(ActionType.ADD_CITY, `http://api.openweathermap.org/data/2.5/weather?q=${city.value}&units=metric&APPID=${process.env.VUE_APP_OPENWEATHER_APP_ID}`)
+          .catch((response: Error) => {
+            error.value.message = response.message
+          })
 
           clear()
         } else {
@@ -107,34 +96,34 @@
 
     &__input {
       padding: 8px 12px;
+      font-size: 14px;
       background-color: map_get($palette, white);
       border: 1px solid map_get($palette, border);
-      font-size: 14px;
       border-radius: 4px;
-
-      &_error {
-        border-color: map_get($palette, error);
-      }
 
       &:hover,
       &:focus {
         background-color: map_get($palette, white);
       }
+
+      &_error {
+        border-color: map_get($palette, error);
+      }
     }
 
     &__error {
       margin: 8px 0 0;
-      font-size: 12px;
       font-weight: 300;
+      font-size: 12px;
       color: map_get($palette, error);
     }
 
     &__button {
       margin-top: 8px;
       padding: 12px 16px;
-      border-radius: 4px;
       background-color: map_get($palette, accent-main);
       border: none;
+      border-radius: 4px;
       transition: .3s ease all;
 
       &:hover,
@@ -160,9 +149,9 @@
     }
 
     &__drag {
+      display: flex;
       width: 20px;
       height: 20px;
-      display: flex;
       padding: 0;
       border: none;
 
@@ -187,7 +176,7 @@
         cursor: pointer;
 
         .card__icon {
-          fill: map_get($palette, error)
+          fill: map_get($palette, error);
         }
       }
 

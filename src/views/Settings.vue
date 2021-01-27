@@ -42,7 +42,7 @@
   import {ActionType} from "@/store/actions/types"
   import draggable from 'vuedraggable'
   import City from "@/models/City";
-  import IError from "@/models/IError";
+  import Error from "@/models/Error";
 
   export default defineComponent({
     name: "Settings",
@@ -51,7 +51,7 @@
     },
     setup() {
       const city = ref()
-      const error = ref({} as IError)
+      const error = ref({} as Error)
 
       const cities: WritableComputedRef<City[]> = computed({
         get(): City[] {

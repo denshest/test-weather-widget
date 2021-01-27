@@ -181,7 +181,7 @@ import Weather from "@/models/Weather";
   .weather-card {
     margin-bottom: 16px;
     padding: 16px;
-    background-color: rgba(255,255,255,.8);
+    background-color: rgba(255, 255, 255, .8);
     border-radius: 10px;
     box-shadow: 0 0 2px rgba(0, 0, 0, .05);
 
@@ -197,8 +197,8 @@ import Weather from "@/models/Weather";
 
     &__title {
       margin: 0;
-      font-size: 14px;
       font-weight: 300;
+      font-size: 14px;
 
       &_weight_strong {
         font-weight: 500;
@@ -208,12 +208,12 @@ import Weather from "@/models/Weather";
     &__update {
       padding: 0;
       border: none;
-      transition: .3s ease all;
       opacity: .5;
+      transition: .3s ease all;
 
       &:hover {
-        cursor: pointer;
         opacity: 1;
+        cursor: pointer;
       }
     }
 
@@ -249,15 +249,10 @@ import Weather from "@/models/Weather";
       margin-right: 16px;
 
       span {
-        font-size: 14px;
         font-weight: 500;
+        font-size: 14px;
         color: map_get($palette, content-light);
         transition: .3s ease color;
-
-        &.active {
-          font-size: 16px;
-          color: map_get($palette, content);
-        }
 
         &:hover {
           color: map_get($palette, content);
@@ -266,6 +261,11 @@ import Weather from "@/models/Weather";
 
         &:first-child {
           margin-right: 10px;
+        }
+
+        &.active {
+          font-size: 16px;
+          color: map_get($palette, content);
         }
       }
     }
@@ -278,8 +278,8 @@ import Weather from "@/models/Weather";
     &__current-description {
       margin: 8px 0 0;
       font-size: 14px;
-      color: map_get($palette, content-light);
       text-transform: capitalize;
+      color: map_get($palette, content-light);
     }
 
     &__body {
@@ -296,10 +296,10 @@ import Weather from "@/models/Weather";
     }
 
     &__list-item {
-      flex-basis: 50%;
       margin-bottom: 12px;
-      font-size: 14px;
       font-weight: 300;
+      font-size: 14px;
+      flex-basis: 50%;
     }
 
     &__footer {
@@ -324,8 +324,8 @@ import Weather from "@/models/Weather";
     &__more {
       margin: 0;
       font-size: 12px;
-      color: map_get($palette, content-light);
       text-align: right;
+      color: map_get($palette, content-light);
     }
   }
 

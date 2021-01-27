@@ -17,7 +17,7 @@ type ActionArguments = Omit<ActionContext<State, State>, 'commit'> & {
 }
 
 export type Actions = {
-    [ActionType.ADD_CITY](context: ActionArguments, payload: {city: City; isCurrentCity?: boolean}): void;
+    [ActionType.ADD_CITY](context: ActionArguments, payload: string): void;
     [ActionType.DELETE_CITY](context: ActionArguments, payload: number): void;
     [ActionType.UPDATE_CITIES](context: ActionArguments, payload: City[]): void;
 }

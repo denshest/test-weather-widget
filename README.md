@@ -50,6 +50,8 @@ npm run cs:fix
 ```
 
 ## How to usage weather-widget
+After [building assets](#compiles-and-minifies-for-widget) for weather-widget you need to following next instruction:
+
 1. Add `dist/css/app.[hash].css` to `<head>` section of your website
 2. Add `dist/js/app.[hash].js` before `</body>` section of your website
 3. Add `weather-widget` to `<body>` of your website

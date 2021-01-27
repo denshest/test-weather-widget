@@ -51,11 +51,11 @@ npm run cs:fix
 
 ```
 <head>
-    <link href="dist/css/app.6815d2f5.css" rel="stylesheet">
+    <link href="dist/css/app.[hash].css" rel="stylesheet">
 </head>
 <body>
 <weather-widget/>
-<script src="../test-weather-widget/dist/js/app.a6c98418.js"></script>
+<script src="../test-weather-widget/dist/js/app.[hash].js"></script>
 </body>
 </html>
 ```
